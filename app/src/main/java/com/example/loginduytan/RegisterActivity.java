@@ -8,6 +8,7 @@ import com.example.loginduytan.api.ApiService;
 import com.example.loginduytan.api.RegisterRequest;
 import com.example.loginduytan.api.RegisterResponse;
 import com.example.loginduytan.databinding.ActivityRegisterBinding;
+import com.example.loginduytan.dialog.CustomDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -65,19 +66,24 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     RegisterResponse registerResponse = response.body();
                     if (registerResponse != null && registerResponse.getErrorCode() == 0) {
-                        System.out.println("Đăng ký thành công: " + registerResponse.getMessage());
+                        showDialog("Đăng ký thành công: " + registerResponse.getMessage());
                     } else {
-                        System.out.println("Lỗi đăng ký: " + (registerResponse != null ? registerResponse.getMessage() : "Không xác định"));
+                        showDialog("Lỗi đăng ký" + (registerResponse != null ? registerResponse.getMessage() : "Không xác định"));
                     }
                 } else {
-                    System.out.println("Phản hồi lỗi từ server: " + response.message());
+                    showDialog("Phản hồi lỗi từ server: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<RegisterResponse> call, Throwable t) {
-                System.out.println("Gọi API thất bại: " + t.getMessage());
+                showDialog("Gọi API thất bại: " + t.getMessage());
             }
         });
+    }
+
+    private void showDialog(String content){
+        CustomDialog customDialog = new CustomDialog(this, content);
+        customDialog.show();
     }
 }
