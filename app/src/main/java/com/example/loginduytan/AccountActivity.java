@@ -1,20 +1,20 @@
 package com.example.loginduytan;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Base64;
 import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.loginduytan.api.ApiService;
-import com.example.loginduytan.api.Role;
 import com.example.loginduytan.api.RoleManager;
 import com.example.loginduytan.api.RoleResponse;
 import com.example.loginduytan.api.UserData;
 import com.example.loginduytan.databinding.ActivityAccountBinding;
 import com.google.gson.Gson;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,24 +31,15 @@ public class AccountActivity extends AppCompatActivity {
         binding = ActivityAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         loadRole();
-
         setupEvent();
-
         delayExecution(500);
     }
 
     private void loadDataUser() {
-        // Lấy chuỗi JSON từ Intent
         String userDataJson = getIntent().getStringExtra("userData");
 
-        // Chuyển đổi JSON trở lại thành đối tượng UserData
         Gson gson = new Gson();
         UserData userData = gson.fromJson(userDataJson, UserData.class);
-
-        // Sử dụng đối tượng userData (ví dụ: hiển thị thông tin)
-        System.out.println("Account ID: " + userData.getACCOUNT_ID());
-        System.out.println("Username: " + userData.getUSERNAME());
-        System.out.println("Role Name: " + userData.getROLE_NAME());
 
         String username = userData.getUSERNAME();
         String createDate = userData.getCREATE_DATE();
@@ -58,6 +49,19 @@ public class AccountActivity extends AppCompatActivity {
         binding.usernameTextView.setText(username);
         binding.createDateTextView.setText(createDate);
         binding.roleTextView.setText(roleName);
+        String avatarBase64 = userData.getAVATAR();
+        Bitmap avatarBitmap = decodeBase64ToBitmap(avatarBase64);
+        binding.avatarImageView.setImageBitmap(avatarBitmap);
+    }
+
+    private Bitmap decodeBase64ToBitmap(String base64String) {
+        // Nếu chuỗi Base64 có prefix "data:image/png;base64," thì hãy loại bỏ nó
+        if (base64String.contains(",")) {
+            base64String = base64String.split(",")[1];
+        }
+
+        byte[] decodedBytes = Base64.decode(base64String, Base64.DEFAULT);
+        return BitmapFactory.decodeByteArray(decodedBytes, 0, decodedBytes.length);
     }
 
     private void loadRole() {
@@ -68,13 +72,8 @@ public class AccountActivity extends AppCompatActivity {
                     RoleResponse roleResponse = response.body();
                     if (roleResponse.getErrorCode() == 0) {
                         roleManager = new RoleManager(roleResponse.getData());
-                        // Bạn có thể lưu danh sách vai trò vào SharedPreferences hoặc Database để sử dụng sau này
                     }
 
-//                    List<Role> roles = roleResponse.getData();
-//                    for (Role role : roles) {
-//                        Log.d("Role", "ID: " + role.getROLE_ID() + ", Name: " + role.getROLE_NAME());
-//                    }
                 } else {
                     Log.e("API Error", "Response không thành công.");
                 }
@@ -96,12 +95,6 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     private void delayExecution(long delayMillis) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                // Đây là nơi bạn gọi hàm tiếp theo sau delay
-                loadDataUser();
-            }
-        }, delayMillis);
+        new Handler().postDelayed(() -> loadDataUser(), delayMillis);
     }
 }
