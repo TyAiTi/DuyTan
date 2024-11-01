@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Please login with your information" />
+                android:text="Please register with your information" />
 
             <View
                 android:layout_width="wrap_content"
