@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:padding="16dp"
     tools:context=".AccountActivity">
@@ -13,16 +14,34 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_gravity="center"
-        android:scaleType="centerCrop" />
+        android:scaleType="centerCrop"
+        />
+
+    <!-- Username Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Username:"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <!-- Username TextView -->
     <TextView
         android:id="@+id/usernameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="Username"
-        android:textSize="18sp"
+        android:layout_marginTop="4dp"
+        android:text="test"
+    android:textSize="18sp" />
+
+    <!-- Create Date Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Create Date:"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <!-- Create Date TextView -->
@@ -31,9 +50,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Create Date"
-        android:textColor="@android:color/darker_gray"
-        android:textSize="14sp" />
+        android:text="2024-10-30T04:15:01.908Z"
+    android:textColor="@android:color/darker_gray"
+    android:textSize="14sp" />
+
+    <!-- Role Label -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Role:"
+        android:textSize="16sp"
+        android:textStyle="bold" />
 
     <!-- Role TextView -->
     <TextView
@@ -41,8 +69,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:text="Role"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="14sp" />
-    
+        android:text="Admin"
+    android:textColor="@android:color/holo_blue_dark"
+    android:textSize="14sp" />
+
+    <!-- Logout Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:text="Logout"
+        app:cornerRadius="32dp"
+        android:layout_marginTop="24dp" />
 </LinearLayout>

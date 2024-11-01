@@ -3,6 +3,7 @@ package com.example.loginduytan;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.view.View;
 
 import com.example.loginduytan.api.UserData;
 import com.example.loginduytan.databinding.ActivityAccountBinding;
@@ -17,6 +18,7 @@ public class AccountActivity extends AppCompatActivity {
         binding = ActivityAccountBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         loadDataUser();
+        setupEvent();
     }
 
     private void loadDataUser(){
@@ -31,5 +33,26 @@ public class AccountActivity extends AppCompatActivity {
         System.out.println("Account ID: " + userData.getACCOUNT_ID());
         System.out.println("Username: " + userData.getUSERNAME());
         System.out.println("Role Name: " + userData.getROLE_NAME());
+
+        String username = userData.getUSERNAME();
+        String createDate = userData.getCREATE_DATE();
+        int role = userData.getROLE_ID();
+
+        binding.usernameTextView.setText(username);
+        binding.createDateTextView.setText(createDate);
+        binding.roleTextView.setText("o");
+    }
+
+    private void setupEvent(){
+        binding.btnLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleLogout();
+            }
+        });
+    }
+
+    private void handleLogout(){
+        finish();
     }
 }
