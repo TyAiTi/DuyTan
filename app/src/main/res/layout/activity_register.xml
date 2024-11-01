@@ -61,17 +61,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Please login with your information" />
+                android:text="Please register with your information" />
 
             <View
                 android:layout_width="wrap_content"
                 android:layout_height="30dp" />
 
             <TextView
+                android:id="@+id/txt_username"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
-                android:text="Email Address"
+                android:text="Username"
                 android:textStyle="bold" />
 
             <EditText
@@ -84,6 +85,7 @@
                 android:layout_height="20dp" />
 
             <TextView
+                android:id="@+id/txt_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
@@ -96,16 +98,19 @@
                 android:inputType="textPassword" />
 
             <TextView
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:alpha="0.7"
                 android:text="Role"
                 android:textStyle="bold" />
 
-            <EditText
+            <Spinner
+                android:id="@+id/dropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/>
 
             <View
                 android:layout_width="wrap_content"
