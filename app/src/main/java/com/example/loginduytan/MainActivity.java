@@ -11,6 +11,7 @@ import com.example.loginduytan.api.LoginRequest;
 import com.example.loginduytan.api.LoginResponse;
 import com.example.loginduytan.api.UserData;
 import com.example.loginduytan.databinding.ActivityMainBinding;
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -62,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         String username = binding.txtUsername.getText().toString();
         String password = binding.txtPassword.getText().toString();
 
-        LoginRequest loginRequest = new LoginRequest("test", "123456"); // Ví dụ về dữ liệu
+        LoginRequest loginRequest = new LoginRequest(username, password); // Ví dụ về dữ liệu
 
 
         ApiService.apiService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
@@ -79,6 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
                         // Ví dụ: Hiển thị tên người dùng
                         System.out.println("Đăng nhập thành công. Tên người dùng: " + userData.getUSERNAME());
+                        gotoAccount(userData);
+
                     } else {
                         // Xử lý trường hợp đăng nhập không thành công
                         System.out.println("Đăng nhập thất bại: " + (loginResponse != null ? loginResponse.getMessage() : "Lỗi không xác định"));
@@ -97,5 +100,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void gotoAccount(UserData userData) {
+        Gson gson = new Gson();
+        String userDataJson = gson.toJson(userData);
+
+        // Tạo Intent để chuyển đến Activity đích (ví dụ: MainActivity)
+        Intent intent = new Intent(MainActivity.this, AccountActivity.class);
+        intent.putExtra("userData", userDataJson);
+        startActivity(intent);
     }
 }
