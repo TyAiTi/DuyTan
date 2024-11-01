@@ -6,7 +6,6 @@ public class RegisterResponse {
     private String messageEn;
     private RegisterData data;
 
-    // Getter và Setter
     public int getErrorCode() {
         return errorCode;
     }

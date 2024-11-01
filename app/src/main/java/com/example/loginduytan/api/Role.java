@@ -1,7 +1,5 @@
 package com.example.loginduytan.api;
 
-import java.util.List;
-
 public class Role {
     private int ROLE_ID;
     private String ROLE_NAME;

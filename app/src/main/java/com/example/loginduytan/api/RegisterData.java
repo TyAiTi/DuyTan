@@ -19,10 +19,8 @@ public class RegisterData {
     private String ACCOUNT_IS_FORCE_LOGOUT;
     private String ROLE;
 
-    // Getter và Setter
     public int getACCOUNT_ID() {
         return ACCOUNT_ID;
     }
 
-    // Các getter và setter khác tương tự
 }

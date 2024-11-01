@@ -26,7 +26,6 @@ public interface ApiService {
     @GET("data/data.json")
     Call<Currency> convertUsdToVnd();
 
-    //if use key
     Call<Currency> convertUsdToVnd(@Query("access_key") String access_key,
                                    @Query("currencies") String currencies,
                                    @Query("source") String source,
@@ -39,7 +38,6 @@ public interface ApiService {
     @POST("Register")
     Call<RegisterResponse> register(@Body RegisterRequest registerRequest);
 
-    // API để lấy danh sách vai trò
     @GET("Role")
     Call<RoleResponse> getRoles(@Query("key") String key);
 }

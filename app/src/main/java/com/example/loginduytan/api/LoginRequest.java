@@ -9,7 +9,6 @@ public class LoginRequest {
         this.PASSWORD = PASSWORD;
     }
 
-    // Getter và Setter (nếu cần)
     public String getUSERNAME() {
         return USERNAME;
     }

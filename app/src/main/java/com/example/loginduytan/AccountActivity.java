@@ -55,7 +55,6 @@ public class AccountActivity extends AppCompatActivity {
     }
 
     private Bitmap decodeBase64ToBitmap(String base64String) {
-        // Nếu chuỗi Base64 có prefix "data:image/png;base64," thì hãy loại bỏ nó
         if (base64String.contains(",")) {
             base64String = base64String.split(",")[1];
         }

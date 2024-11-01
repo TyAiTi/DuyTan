@@ -11,7 +11,6 @@ public class UserData {
     private String ROLE_CREATE_BY_USERNAME;
     private String ROLE_CREATE_DATE;
 
-    // Getter và Setter cho các trường
     public int getACCOUNT_ID() {
         return ACCOUNT_ID;
     }

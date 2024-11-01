@@ -15,7 +15,6 @@ public class RegisterRequest {
         this.CREATE_DATE = CREATE_DATE;
     }
 
-    // Getter và Setter (nếu cần)
     public String getKEY() {
         return KEY;
     }

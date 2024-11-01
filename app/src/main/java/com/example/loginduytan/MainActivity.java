@@ -2,7 +2,6 @@ package com.example.loginduytan;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -20,31 +19,18 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_main);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
         setupEvent();
     }
 
     private void setupEvent() {
-        binding.btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickLogin();
-            }
-        });
+        binding.btnLogin.setOnClickListener(v -> onClickLogin());
 
-        binding.btnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onClickRegister();
-            }
-        });
+        binding.btnRegister.setOnClickListener(v -> onClickRegister());
     }
 
     private void onClickLogin() {
@@ -63,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
     private void handleLogin() {
         String username = binding.txtUsername.getText().toString();
         String password = binding.txtPassword.getText().toString();
-
-        LoginRequest loginRequest = new LoginRequest(username, password); // Ví dụ về dữ liệu
+        LoginRequest loginRequest = new LoginRequest(username, password);
 
         ApiService.apiService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
@@ -72,13 +57,10 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     LoginResponse loginResponse = response.body();
 
-                    // Kiểm tra phản hồi từ API
                     if (loginResponse != null && loginResponse.getErrorCode() == 0) {
-                        // Đăng nhập thành công
                         String message = loginResponse.getMessage();
                         UserData userData = loginResponse.getData();
 
-                        // Ví dụ: Hiển thị tên người dùng
                         System.out.println("Đăng nhập thành công. Tên người dùng: " + userData.getUSERNAME());
                         gotoAccount(userData);
 
@@ -99,14 +81,11 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Gọi API thất bại: " + t.getMessage());
             }
         });
-
     }
 
     private void gotoAccount(UserData userData) {
         Gson gson = new Gson();
         String userDataJson = gson.toJson(userData);
-
-        // Tạo Intent để chuyển đến Activity đích (ví dụ: MainActivity)
         Intent intent = new Intent(MainActivity.this, AccountActivity.class);
         intent.putExtra("userData", userDataJson);
         startActivity(intent);

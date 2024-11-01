@@ -6,7 +6,6 @@ public class LoginResponse {
     private String messageEn;
     private UserData data;
 
-    // Getter và Setter cho các trường
     public int getErrorCode() {
         return errorCode;
     }
