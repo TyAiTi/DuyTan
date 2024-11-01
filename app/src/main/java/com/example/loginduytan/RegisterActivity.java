@@ -21,7 +21,7 @@ import retrofit2.Response;
 public class RegisterActivity extends AppCompatActivity {
 
     private ActivityRegisterBinding binding;
-
+    String key = "mydtu.duytan.edu.vn";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +72,7 @@ public class RegisterActivity extends AppCompatActivity {
         String role = binding.txtRole.getText().toString();
         System.out.println("role: " + role);
         int role_id = Integer.parseInt(role);
-        RegisterRequest registerRequest = new RegisterRequest("mydtu.duytan.edu.vn", username, password, role_id, formattedDate);
+        RegisterRequest registerRequest = new RegisterRequest(key, username, password, role_id, formattedDate);
 
         ApiService.apiService.register(registerRequest).enqueue(new Callback<RegisterResponse>() {
             @Override

@@ -20,6 +20,7 @@ import retrofit2.Response;
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         String password = binding.txtPassword.getText().toString();
 
         LoginRequest loginRequest = new LoginRequest(username, password); // Ví dụ về dữ liệu
-
 
         ApiService.apiService.login(loginRequest).enqueue(new Callback<LoginResponse>() {
             @Override
