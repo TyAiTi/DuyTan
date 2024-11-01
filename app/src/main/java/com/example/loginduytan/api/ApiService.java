@@ -23,15 +23,6 @@ public interface ApiService {
             .build()
             .create(ApiService.class);
 
-    @GET("data/data.json")
-    Call<Currency> convertUsdToVnd();
-
-    Call<Currency> convertUsdToVnd(@Query("access_key") String access_key,
-                                   @Query("currencies") String currencies,
-                                   @Query("source") String source,
-                                   @Query("format") String format
-    );
-
     @POST("Login")
     Call<LoginResponse> login(@Body LoginRequest loginRequest);
 
