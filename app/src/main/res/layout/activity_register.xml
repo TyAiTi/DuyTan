@@ -105,11 +105,12 @@
                 android:text="Role"
                 android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/txt_role"
+            <Spinner
+                android:id="@+id/dropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                 />
+                android:background="@android:drawable/btn_dropdown"
+                android:spinnerMode="dropdown"/>
 
             <View
                 android:layout_width="wrap_content"
